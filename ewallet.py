@@ -92,7 +92,7 @@ def getSaldo():
 def isQuorum():
   r = requests.get(list_api).text
   r_json = json.loads(r)
-  return r_json="\n"
+  return r_json+"\n"
 
 if __name__ == '__main__':
   app.run(ip_address, port=5000)
