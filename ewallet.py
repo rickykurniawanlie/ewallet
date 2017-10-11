@@ -42,6 +42,5 @@ def register():
     return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
 
 
-
 if __name__ == '__main__':
-  app.run(ip_address, port=8080)
+  app.run(ip_address, port=5000)
