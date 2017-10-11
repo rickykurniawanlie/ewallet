@@ -13,6 +13,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
   user_id = db.Column(db.String(80), primary_key=True)
   name = db.Column(db.String(80), nullable=False)
+  saldo = db.Column(db.Integer, nullable=False)
 
   def __repr__(self):
     return '<User %r>' % self.name

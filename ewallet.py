@@ -42,7 +42,7 @@ def register():
       user_id = data['user_id']
       name = data['nama']
       register_return = data['registerReturn']
-      new_user = User(user_id=user_id, name=name)
+      new_user = User(user_id=user_id, name=name, saldo=0)
       try:
         db.session.add(new_user)
         db.session.commit()
