@@ -9,6 +9,7 @@ import yaml
 
 ip_address = str(socket.gethostbyname(socket.gethostname()))
 file_path = os.path.abspath(os.getcwd())+"/ewallet.db"
+list_api = 'http://152.118.31.2/list.php'
 yaml_file = sys.argv[1]
 with open(yaml_file, 'r') as ymlfile:
   cfg = yaml.load(ymlfile)
@@ -87,8 +88,11 @@ def getSaldo():
     response['nilai_saldo'] = -99
     return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
 
+@app.route(base_path + 'isQuorum', methods=['GET'])
 def isQuorum():
-  return True
+  r = requests.get(list_api).text
+  r_json = json.loads(r)
+  return r_json="\n"
 
 if __name__ == '__main__':
   app.run(ip_address, port=5000)
