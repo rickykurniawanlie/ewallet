@@ -60,6 +60,33 @@ def register():
     response['status_register'] = -99
     return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
 
+@app.route(base_path + 'getSaldo', methods=['POST'])
+def getSaldo():
+  response = {}
+  try:
+    if (isQuorum()):
+      data = json.loads(request.data.decode())
+      user_id = data['user_id']
+      user = User.query.filter_by(user_id = user_id).first()
+      if (user == None):
+        response['nilai_saldo'] = -1
+        return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
+      else:
+        try:
+          response['nilai_saldo'] = user.saldo
+          return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
+        except Exception as ex:
+          print (ex)
+          response['nilai_saldo'] = -4
+          return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
+    else:
+      response['nilai_saldo'] = -2
+      return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
+  except Exception as ex:
+    print (ex)
+    response['nilai_saldo'] = -99
+    return Response(json.dumps(response, ensure_ascii=True)+"\n", status=200, mimetype=prod_json)
+
 def isQuorum():
   return True
 
