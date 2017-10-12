@@ -7,6 +7,7 @@ import socket
 import requests
 import json
 import yaml
+import math
 
 ip_address = '0.0.0.0'
 port = 5000
@@ -95,19 +96,26 @@ def isQuorum():
   # r = requests.get(list_api).text
   # r_json = json.loads(r)
   # ================================
-  # count = 0
-  # with open('test.json') as data_file:    
-  #   list_json = json.load(data_file)  
-  # for entry in list_json:
-  #   try:
-  #     url = 'http://'+entry['ip']+':' + str(port) + '/ewallet/ping'
-  #     r = requests.post(url).text
-  #     r_json = json.loads(r)
-  #     print (r_json['pong'])
-  #     # print (url)
-  #   except Exception as ex:
-  #     print (ex)
-  return True
+  count = 0
+  count_ping = 0
+  with open('test.json') as data_file:    
+    list_json = json.load(data_file)  
+  for entry in list_json:
+    try:
+      url = 'http://'+entry['ip']+':' + str(port) + '/ewallet/ping'
+      r = requests.post(url).text
+      r_json = json.loads(r)
+      if (r_json['pong'] == 1):
+        count += 1
+        count_ping += 1
+      else:
+        count += 1
+    except Exception as ex:
+      print (ex)
+  if (count_ping > math.floor(count/2)) :
+    return True
+  else:
+    return False
 
 if __name__ == '__main__':
-  app.run(ip_address, port=port)
+  app.run(ip_address, port=port, threaded=True)
