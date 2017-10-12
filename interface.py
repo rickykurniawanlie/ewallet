@@ -33,21 +33,21 @@ def get_saldo():
       r_json = json.loads(r)
       status = r_json['status_register']
       if (status == -2):
-        print ('Quorum not enough')
+        print ('Quorum not enough dari register')
       elif (status == -4):
-        print ('Sorry.. Database error')
+        print ('Sorry.. Database error dari register')
       elif (status == -99):
-        print ('Unknown problem Captain!!!')
+        print ('Unknown problem Captain!!! dari register')
       else:
         print ("Successfully registered to: " + ip_address)
     except Exception as ex:
       print (ex)
   elif (nilai_saldo == -2):
-    print ('Quorum not enough')
+    print ('Quorum not enough dari getsaldo')
   elif (nilai_saldo == -4):
-    print ('Sorry.. Database error')
+    print ('Sorry.. Database error dari getsaldo')
   elif (nilai_saldo == -99):
-    print ('Unknown problem Captain!!!')
+    print ('Unknown problem Captain!!! dari getsaldo')
   else:
     print ('Nilai saldo di ' + str(ip_address) + ' : ' + str(r_json['nilai_saldo']))
 
