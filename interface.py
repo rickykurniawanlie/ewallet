@@ -9,7 +9,7 @@ def ping():
   url = 'http://'+ip_address+':' + str(port) + '/ewallet/ping'
   r = requests.post(url).text
   r_json = json.loads(r)
-  print ('return: ' + r_json['pong'])
+  print ('return: ' + str(r_json['pong']))
 
 def get_saldo():
   ip_address = input("Input IP to get saldo from: ")
