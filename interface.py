@@ -28,7 +28,7 @@ def get_saldo():
     try:
       url = 'http://'+ip_address+':' + str(port) + '/ewallet/register'
       user_name = User.query.filter_by(user_id=user_id).first().name
-      payload['user_id'] = {"user_id": str(user_id), "nama": str(user_name)}
+      payload = {"user_id": str(user_id), "nama": str(user_name)}
       r = requests.post(url, data=json.dumps(payload)).text
       r_json = json.loads(r)
       status = r_json['status_register']
