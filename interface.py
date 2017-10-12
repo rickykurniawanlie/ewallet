@@ -44,9 +44,9 @@ def get_saldo():
       print (ex)
   elif (nilai_saldo == -2):
     print ('Quorum not enough')
-  elif (status == -4):
+  elif (nilai_saldo == -4):
     print ('Sorry.. Database error')
-  elif (status == -99):
+  elif (nilai_saldo == -99):
     print ('Unknown problem Captain!!!')
   else:
     print ('Nilai saldo di ' + str(ip_address) + ' : ' + str(r_json['nilai_saldo']))
