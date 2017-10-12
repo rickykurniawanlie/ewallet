@@ -97,7 +97,7 @@ def isQuorum():
   with open('test.json') as data_file:    
     r_json = json.load(data_file)  
   for entry in r_json:
-    r = requests.get(entry['ip']+':80/ewallet/ping').text
+    r = requests.get('http://' + entry['ip'] + ':80/ewallet/ping').text
     print (r)
   return ''
 
