@@ -9,6 +9,7 @@ import json
 import yaml
 
 ip_address = '0.0.0.0'
+port = 5000
 file_path = os.path.abspath(os.getcwd())+"/ewallet.db"
 list_api = 'http://152.118.31.2/list.php'
 yaml_file = sys.argv[1]
@@ -93,13 +94,18 @@ def getSaldo():
 def isQuorum():
   # r = requests.get(list_api).text
   # r_json = json.loads(r)
-  count = 0
-  with open('test.json') as data_file:    
-    r_json = json.load(data_file)  
-  for entry in r_json:
-    r = requests.get('http://' + entry['ip'] + ':80/ewallet/ping').text
-    print (r)
-  return ''
+  # ================================
+  # count = 0
+  # with open('test.json') as data_file:    
+  #   r_json = json.load(data_file)  
+  # for entry in r_json:
+  #   url = entry['ip'] + ':' + str(port) + '/ewallet/ping'
+  #   try:
+  #     # r = requests.post(url).text
+  #     print (url)
+  #   except Exception as ex:
+  #     print (ex)
+  return True
 
 if __name__ == '__main__':
-  app.run(ip_address, port=5000)
+  app.run(ip_address, port=port)
