@@ -41,7 +41,8 @@ def register():
   response = {}
   try:
     if (isQuorum()):
-      data = json.loads(request.data.decode())
+      # data = str(json.loads(request.get_json(force=True)))
+      data = request.get_json(force=True)
       user_id = data['user_id']
       name = data['nama']
       new_user = User(user_id=user_id, name=name, saldo=0)
@@ -67,7 +68,8 @@ def getSaldo():
   response = {}
   try:
     if (isQuorum()):
-      data = json.loads(request.data.decode())
+      # data = json.loads(request.get_json(force=True).decode())
+      data = request.get_json(force=True)
       user_id = data['user_id']
       user = User.query.filter_by(user_id = user_id).first()
       if (user == None):
