@@ -2,7 +2,7 @@ import requests
 import json
 from models import User
 
-port = 5000
+port = 80
 
 def ping():
   ip_address = input("Input IP to ping on: ")
