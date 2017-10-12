@@ -9,7 +9,7 @@ import json
 import yaml
 
 ip_address = '0.0.0.0'
-port = 80
+port = 5000
 file_path = os.path.abspath(os.getcwd())+"/ewallet.db"
 list_api = 'http://152.118.31.2/list.php'
 yaml_file = sys.argv[1]
