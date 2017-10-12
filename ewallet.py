@@ -91,10 +91,14 @@ def getSaldo():
 
 @app.route(base_path + 'isQuorum', methods=['GET'])
 def isQuorum():
-  r = requests.get(list_api).text
-  r_json = json.loads(r)
-  for entry in r_json.values():
-    print(entry[ip] + " " + entry[npm])
+  # r = requests.get(list_api).text
+  # r_json = json.loads(r)
+  count = 0
+  with open('test.json') as data_file:    
+    r_json = json.load(data_file)  
+  for entry in r_json:
+    r = requests.get(entry['ip']+':80/ewallet/ping').text
+    print (r)
   return ''
 
 if __name__ == '__main__':
